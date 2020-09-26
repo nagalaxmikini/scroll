@@ -16,6 +16,7 @@ import image5 from "./mini-idli.jpg";
 import image6 from "./malpe.jpg";
 import InfoIcon from "@material-ui/icons/Info";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
+import Card from "./Card.js";
 
 const tileData = [
   { img: image6, title: "Image", author: "author", cols: 2 },
@@ -60,41 +61,52 @@ function App() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <ListSubheader component="div">Images by different authors</ListSubheader>
-      <GridList cellHeight={400} className={classes.gridList} cols={8}>
-        {tileData.map(tile => (
-          <GridListTile key={tile.img} cols={tile.cols || 1}>
-            <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
-              title={tile.title}
-              titlePosition="top"
-              actionIcon={
-                <IconButton
-                  aria-label={`star ${tile.title}`}
-                  className={classes.icon}
-                >
-                  <StarBorderIcon className={classes.title} />
-                </IconButton>
-              }
-              actionPosition="left"
-              className={classes.titleBar}
-            />
-            <GridListTileBar
-              title={tile.title}
-              subtitle={<span>by: {tile.author}</span>}
-              actionIcon={
-                <IconButton
-                  aria-label={`info about ${tile.title}`}
-                  className={classes.icon}
-                >
-                  <InfoIcon />
-                </IconButton>
-              }
-            />
-          </GridListTile>
-        ))}
-      </GridList>
+    <div>
+      <div className={classes.root}>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
+      <div className={classes.root}>
+        <ListSubheader component="div">
+          Images by different authors
+        </ListSubheader>
+
+        <GridList cellHeight={400} className={classes.gridList} cols={8}>
+          {tileData.map(tile => (
+            <GridListTile key={tile.img} cols={tile.cols || 1}>
+              <img src={tile.img} alt={tile.title} />
+              <GridListTileBar
+                title={tile.title}
+                titlePosition="top"
+                actionIcon={
+                  <IconButton
+                    aria-label={`star ${tile.title}`}
+                    className={classes.icon}
+                  >
+                    <StarBorderIcon className={classes.title} />
+                  </IconButton>
+                }
+                actionPosition="left"
+                className={classes.titleBar}
+              />
+              <GridListTileBar
+                title={tile.title}
+                subtitle={<span>by: {tile.author}</span>}
+                actionIcon={
+                  <IconButton
+                    aria-label={`info about ${tile.title}`}
+                    className={classes.icon}
+                  >
+                    <InfoIcon />
+                  </IconButton>
+                }
+              />
+            </GridListTile>
+          ))}
+        </GridList>
+      </div>
     </div>
   );
 }
